@@ -1,0 +1,13 @@
+{% set allowed_metaparams = ('alias',) %}
+{% for resource in resources %}
+define {{resource_type[7:]}} {
+    {% if name_attr %}
+    {{name_attr}} {{resource.name}}
+    {% endif %}
+    {% for key,value in resource.parameters.items() %}
+    {% if key not in metaparams or key in allowed_metaparams %}
+    {{key}} {{value}}
+    {% endif %}
+    {% endfor %}
+}
+{% endfor %}
