@@ -8,7 +8,7 @@ import logging
 import pypuppetdb
 import jinja2
 
-log = logging.getLogger('puppetdb-stencil')
+log = logging.getLogger('puppetdb_stencil')
 
 METAPARAMS = ('require', 'before', 'subscribe', 'notify', 'audit', 'loglevel',
         'noop', 'schedule', 'stage', 'alias', 'tag')
@@ -31,7 +31,7 @@ def render_resources(db, resource_type, template_names):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(prog='puppetdb-stencil')
+    parser = argparse.ArgumentParser(prog='puppetdb_stencil')
     parser.add_argument('resource_types', metavar='RESOURCE_TYPE', nargs='+')
     parser.add_argument('--templates', '-t', metavar='TEMPLATE', nargs='*')
     parser.add_argument('--debug', '-d', action='store_true')

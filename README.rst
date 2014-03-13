@@ -1,18 +1,18 @@
 ################
-puppetdb-stencil
+puppetdb_stencil
 ################
 
 When passed one or more resource types those resources are rendered through templates. The templates are loaded based on a template matching the exact resource type name with a .jinja2 extension or an optionally passed template.
 
 .. code-block:: bash
 
-   $ python puppetdb-stencil.py mytype
+   $ python puppetdb_stencil.py mytype
 
 A more complex example that renders multiple types through a shared template:
 
 .. code-block:: bash
 
-   $ python puppetdb-stencil.py nagios_host nagios_hostgroup -t examples/nagios_.jinja2
+   $ python puppetdb_stencil.py nagios_host nagios_hostgroup -t examples/nagios_.jinja2
 
 Template selection
 ------------------
@@ -21,7 +21,7 @@ The jinja2 loader is used to first search in the current directory and then the 
 
 .. code-block:: bash
 
-   $ python puppetdb-stencil.py nagios_host -t examples/nagios_.jinja2
+   $ python puppetdb_stencil.py nagios_host -t examples/nagios_.jinja2
 
 This looks in these places:
 
