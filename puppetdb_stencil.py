@@ -22,7 +22,7 @@ environment = jinja2.Environment(trim_blocks=True, lstrip_blocks=True,
 def render_resources(db, resource_type, template_names):
     resources = db.resources(resource_type)
     try:
-        template = environment.select_template(templates)
+        template = environment.select_template(template_names)
     except jinja2.TemplatesNotFound:
         log.error('No template found for {0}'.format(resource_type))
     else:
