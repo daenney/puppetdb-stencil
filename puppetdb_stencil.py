@@ -3,7 +3,6 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import argparse
-import codecs
 import logging
 import pypuppetdb
 import jinja2
@@ -18,6 +17,7 @@ loader = jinja2.FileSystemLoader(['.', '/'])
 environment = jinja2.Environment(trim_blocks=True, lstrip_blocks=True,
         loader=loader,
         extensions=['jinja2.ext.with_', 'jinja2.ext.loopcontrols'])
+
 
 def render_resources(db, resource_type, template_names):
     resources = db.resources(resource_type)
