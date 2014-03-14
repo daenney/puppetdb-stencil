@@ -8,3 +8,5 @@ script:
   - "pep8 puppetdb_stencil.py"
   - "pylint puppetdb_stencil.py"
   - "python puppetdb_stencil.py --help"
+notifications:
+  email: false
