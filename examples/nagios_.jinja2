@@ -9,7 +9,11 @@ define {{object_name}} {
     {% endif %}
     {% for key,value in resource.parameters.items() %}
     {% if key not in metaparams or key in allowed_metaparams %}
+    {% if value is iterable and value is not string %}
+    {{key}} {{value|join(", ")}}
+    {% else %}
     {{key}} {{value}}
+    {% endif %}
     {% endif %}
     {% endfor %}
 }
