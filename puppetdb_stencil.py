@@ -14,13 +14,13 @@ import jinja2
 LOG = logging.getLogger('puppetdb_stencil')
 
 METAPARAMS = ('require', 'before', 'subscribe', 'notify', 'audit', 'loglevel',
-        'noop', 'schedule', 'stage', 'alias', 'tag')
+              'noop', 'schedule', 'stage', 'alias', 'tag')
 
 # Allow templates from anywhere on the filesystem
 LOADER = jinja2.FileSystemLoader(['.', '/'])
+EXTENSIONS = ['jinja2.ext.with_', 'jinja2.ext.loopcontrols']
 ENVIRONMENT = jinja2.Environment(trim_blocks=True, lstrip_blocks=True,
-        loader=LOADER,
-        extensions=['jinja2.ext.with_', 'jinja2.ext.loopcontrols'])
+                                 loader=LOADER, extensions=EXTENSIONS)
 
 
 def render_resources(database, resource_type, template_names):
@@ -36,7 +36,7 @@ def render_resources(database, resource_type, template_names):
         LOG.error('No template found for {0}'.format(resource_type))
     else:
         return template.render(resource_type=resource_type,
-            resources=resources, metaparams=METAPARAMS)
+                               resources=resources, metaparams=METAPARAMS)
 
 
 def main():
