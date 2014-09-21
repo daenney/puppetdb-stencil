@@ -1,12 +1,19 @@
 {% set allowed_metaparams = ('alias',) %}
+{% set named_objects = ('host', 'hostgroup', 'servicegroup', 'contact', 'contactgroup', 'timeperiod', 'command') %}
+{% set object_name = resource_type[7:] %}
+{% set named_object = object_name in named_objects %}
 {% for resource in resources %}
-define {{resource_type[7:]}} {
-    {% if name_attr %}
-    {{name_attr}} {{resource.name}}
+define {{object_name}} {
+    {% if named_object %}
+    {{object_name}}_name {{resource.name}}
     {% endif %}
     {% for key,value in resource.parameters.items() %}
     {% if key not in metaparams or key in allowed_metaparams %}
+    {% if value is iterable and value is not string %}
+    {{key}} {{value|join(", ")}}
+    {% else %}
     {{key}} {{value}}
+    {% endif %}
     {% endif %}
     {% endfor %}
 }
